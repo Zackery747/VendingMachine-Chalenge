@@ -23,9 +23,10 @@ export default defineComponent({
 
 <style scoped>
 .product {
+  opacity: 0;
   position: relative;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   left: 50%;
   transform: translateX(-50%);
 
@@ -40,7 +41,8 @@ export default defineComponent({
 }
 
 @keyframes fadein {
-  0% { opacity: 0; bottom: 100% }
-  100%   { opacity: 1; bottom: 0%}
+  0% { opacity: 0; top: 0% }
+  50%   { opacity: 1; top: 40%}
+  100% { opacity: 0; top: 40% }
 }
 </style>

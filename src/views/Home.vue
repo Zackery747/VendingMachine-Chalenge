@@ -7,9 +7,17 @@
           :key="`product-${index}`"
           :product="product"
         />
+        <!-- dispenser -->
+        <div class="dispenser">
+          <product v-if="productToDispense" :image="productToDispense?.image || ''"/>
+          <div class="dispenser-glass"/>
+        </div>
       </template>
       <template #right>
-        <vending-machine-controlls :products="products"/>
+        <vending-machine-controlls
+          :products="products"
+          @dispense-product="dispenseProduct"
+        />
       </template>
     </vending-machine-layout>
   </div>
@@ -21,13 +29,15 @@ import ProductTypeInterface from '@/classes/interface/productTypeInterface'
 import VendingMachineLayout from '@/components/VendingMachineLayout.vue'
 import VendingMachineItem from '@/components/VendingMachineItem.vue'
 import VendingMachineControlls from '@/components/VendingMachineControlls.vue'
+import Product from '@/components/Product.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     VendingMachineLayout,
     VendingMachineItem,
-    VendingMachineControlls
+    VendingMachineControlls,
+    Product
   },
   setup () {
     const products: Ref<ProductTypeInterface[]> = ref([
@@ -86,8 +96,16 @@ export default defineComponent({
         image: require('@/assets/products/9.png')
       }
     ])
+    const productToDispense: Ref<ProductTypeInterface | null> = ref(null)
+
+    function dispenseProduct (product: ProductTypeInterface) {
+      productToDispense.value = product
+    }
+
     return {
-      products
+      products,
+      productToDispense,
+      dispenseProduct
     }
   }
 })
@@ -98,5 +116,24 @@ export default defineComponent({
   background: #f7f8f9;
   height: 100vh;
   width: 100vw;
+}
+
+.dispenser {
+  width: 250px;
+  height: 100px;
+  background: rgba(37, 37, 37, 0.5);
+  border: 2px solid #fff;
+  margin-top: 25px;
+  border-radius: 10px;
+  position: absolute;
+}
+
+.dispenser-glass {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(37, 37, 37, 0.5);
+  top: 0px;
+  left: 0px;
 }
 </style>

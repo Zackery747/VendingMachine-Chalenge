@@ -28,11 +28,12 @@ export default defineComponent({
       required: true
     }
   },
+  emits: ['dispense-product'],
   components: {
     VendingMachineTouchPad,
     VendingMachineCoinInsert
   },
-  setup (props) {
+  setup (props, { emit }) {
     const totalCoins: Ref<number> = ref(0)
     const selectedNumber: Ref<string> = ref('')
 
@@ -61,6 +62,7 @@ export default defineComponent({
           message: 'Oops, you don\'t have enough coins.',
           type: 'error'
         })
+        return
       }
 
       // deduct coins
@@ -74,6 +76,7 @@ export default defineComponent({
 
       // give product
       alert('Product: ' + product.name)
+      emit('dispense-product', product)
     }
 
     function checkIfProductExits (): ProductTypeInterface | null {

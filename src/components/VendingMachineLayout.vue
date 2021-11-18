@@ -5,11 +5,6 @@
       <vending-machine-item-layout>
         <slot name="items"/>
       </vending-machine-item-layout>
-      <!-- dispenser -->
-      <div class="dispenser">
-        <product :image="burger.image"/>
-        <div class="dispenser-glass"/>
-      </div>
     </div>
     <div class="layout-right-section">
       <slot name="right"/>
@@ -23,21 +18,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import VendingMachineItemLayout from './VendingMachineItemLayout.vue'
-import Product from './Product.vue'
 
 export default defineComponent({
   components: {
-    VendingMachineItemLayout,
-    Product
+    VendingMachineItemLayout
   },
   setup () {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const burger = {
-      image: require('@/assets/products/1.png')
-    }
-
     return {
-      burger
     }
   }
 })
@@ -98,22 +85,4 @@ export default defineComponent({
   border-bottom-right-radius: 7px;
 }
 
-.dispenser {
-  width: 95%;
-  height: 100px;
-  background: rgba(37, 37, 37, 0.5);
-  border: 2px solid #fff;
-  margin-top: 25px;
-  border-radius: 10px;
-  position: relative;
-}
-
-.dispenser-glass {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(37, 37, 37, 0.5);
-  top: 0px;
-  left: 0px;
-}
 </style>
