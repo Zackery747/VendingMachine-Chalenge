@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, Ref, ref } from 'vue'
+import { computed, defineComponent, Ref, ref, watch } from 'vue'
 
 export default defineComponent({
   props: {
@@ -81,6 +81,10 @@ export default defineComponent({
       if (!numberInput.value) return true
       if (numberInput.value.length <= 0) return true
       return false
+    })
+
+    watch(() => props.modelValue, (newValue: string) => {
+      numberInput.value = newValue
     })
 
     return {

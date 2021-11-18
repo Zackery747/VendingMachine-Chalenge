@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue'
+import { defineComponent, Ref, ref, watch } from 'vue'
 import CoinTypeInterface from '@/classes/interface/coinTypeInterface'
 
 export default defineComponent({
@@ -85,6 +85,10 @@ export default defineComponent({
       totalCoin.value += value
       emit('update:modelValue', totalCoin.value)
     }
+
+    watch(() => props.modelValue, (newValue: number) => {
+      totalCoin.value = newValue
+    })
 
     return {
       totalCoin,

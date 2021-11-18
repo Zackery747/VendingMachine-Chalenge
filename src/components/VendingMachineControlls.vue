@@ -4,29 +4,89 @@
   <!-- touch pad -->
   <vending-machine-touch-pad v-model="selectedNumber"/>
   <!-- enter button -->
-  <div class="enter-button">
+  <button
+    class="enter-button"
+    :disabled="selectDisabled"
+    @click="selectProduct()"
+  >
     Select
-  </div>
+  </button>
   <!-- change -->
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue'
+import ProductTypeInterface from '@/classes/interface/productTypeInterface'
+import { ElMessage } from 'element-plus'
+import { computed, defineComponent, PropType, Ref, ref } from 'vue'
 import VendingMachineCoinInsert from './VendingMachineCoinInsert.vue'
 import VendingMachineTouchPad from './VendingMachineTouchPad.vue'
 
 export default defineComponent({
+  props: {
+    products: {
+      type: Array as PropType<ProductTypeInterface[]>,
+      required: true
+    }
+  },
   components: {
     VendingMachineTouchPad,
     VendingMachineCoinInsert
   },
-  setup () {
+  setup (props) {
     const totalCoins: Ref<number> = ref(0)
     const selectedNumber: Ref<string> = ref('')
 
+    const selectDisabled = computed(() => {
+      if (!totalCoins.value || totalCoins.value === 0 || !selectedNumber.value || selectedNumber.value === '') return true
+      return false
+    })
+
+    function selectProduct () {
+      // check if product exists
+      const product: ProductTypeInterface | null = checkIfProductExits()
+      if (!product) {
+        ElMessage({
+          showClose: true,
+          message: 'Oops, invalid product number. Please try again.',
+          type: 'error'
+        })
+        selectedNumber.value = ''
+        return
+      }
+
+      // check if client can afford the product
+      if (product.price > totalCoins.value) {
+        ElMessage({
+          showClose: true,
+          message: 'Oops, you don\'t have enough coins.',
+          type: 'error'
+        })
+      }
+
+      // deduct coins
+      totalCoins.value = totalCoins.value - product.price
+
+      // give change
+      // TODO: change method
+
+      // set coins to R0
+      // set select number to ''
+
+      // give product
+      alert('Product: ' + product.name)
+    }
+
+    function checkIfProductExits (): ProductTypeInterface | null {
+      // check if product exists
+      const product: ProductTypeInterface = props.products.filter((item: ProductTypeInterface) => item.number === selectedNumber.value)[0]
+      return product
+    }
+
     return {
       totalCoins,
-      selectedNumber
+      selectedNumber,
+      selectDisabled,
+      selectProduct
     }
   }
 })
@@ -42,7 +102,6 @@ export default defineComponent({
   border-radius: 7px;
   font-family: "Saira Stencil One", Arial, Helvetica, sans-serif;
   font-size: 25px;
-  cursor: pointer;
 
   display: grid;
   align-items: center;
@@ -50,6 +109,6 @@ export default defineComponent({
 }
 
 .enter-button:hover {
-  font-size: 28px;
+  font-size: 26px;
 }
 </style>
