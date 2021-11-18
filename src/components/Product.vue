@@ -31,7 +31,6 @@ export default defineComponent({
   transform: translateX(-50%);
 
   animation-duration: 2s;
-  animation-fill-mode: forwards;
 
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
       -moz-animation: fadein 2s; /* Firefox < 16 */

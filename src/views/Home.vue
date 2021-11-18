@@ -100,6 +100,9 @@ export default defineComponent({
 
     function dispenseProduct (product: ProductTypeInterface) {
       productToDispense.value = product
+      setTimeout(function () {
+        productToDispense.value = null
+      }, 2000)
     }
 
     return {

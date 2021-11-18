@@ -72,7 +72,9 @@ export default defineComponent({
       // TODO: change method
 
       // set coins to R0
+      totalCoins.value = 0
       // set select number to ''
+      selectedNumber.value = ''
 
       // give product
       alert('Product: ' + product.name)
