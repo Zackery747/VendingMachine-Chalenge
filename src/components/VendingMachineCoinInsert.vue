@@ -1,0 +1,134 @@
+<template>
+  <div class='coin-insert-wrapper'>
+    <!-- total -->
+    <div class="total-coins">
+      Total: {{ totalCoin.toFixed(2) }}
+    </div>
+
+    <!-- coins popup -->
+    <el-popover
+      placement="bottom"
+      :width="200"
+      trigger="hover"
+    >
+    <template #reference>
+      <div class="coin-slot"></div>
+    </template>
+    <!-- coins -->
+    <div>
+      <div
+        v-for="(coin, index) in coins"
+        :key="`coin${index}`"
+        class="coin"
+        :style='`
+          background: ${coin.backgroundColor};
+          border: 5px solid ${coin.borderColor}
+        `'
+        @click="insertCoin(coin.value)"
+      >
+        {{ coin.name }}
+      </div>
+    </div>
+    </el-popover>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, Ref, ref } from 'vue'
+import CoinTypeInterface from '@/classes/interface/coinTypeInterface'
+
+export default defineComponent({
+  setup () {
+    const totalCoin: Ref<number> = ref(0)
+    const coins: Ref<CoinTypeInterface[]> = ref([
+      {
+        name: '20c',
+        value: 0.20,
+        backgroundColor: '#F39C12',
+        borderColor: '#D68910'
+      },
+      {
+        name: '50c',
+        value: 0.50,
+        backgroundColor: '#F39C12',
+        borderColor: '#D68910'
+      },
+      {
+        name: 'R1',
+        value: 1,
+        backgroundColor: '#CACFD2',
+        borderColor: '#A6ACAF'
+      },
+      {
+        name: 'R2',
+        value: 2,
+        backgroundColor: '#CACFD2',
+        borderColor: '#A6ACAF'
+      },
+      {
+        name: 'R5',
+        value: 5,
+        backgroundColor: '#F39C12',
+        borderColor: '#A6ACAF'
+      }
+    ])
+
+    function insertCoin (value: number) {
+      totalCoin.value += value
+    }
+
+    return {
+      totalCoin,
+      insertCoin,
+      coins
+    }
+  }
+})
+</script>
+
+<style scoped>
+.coin-insert-wrapper {
+  width: 100%;
+  height: 120px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.coin-slot {
+  width: 10px;
+  height: 70px;
+  background: #000;
+  margin: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.coin {
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  border-radius: 80px;
+  display: inline-grid;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px;
+  cursor: pointer;
+}
+
+.total-coins {
+  width: 90%;
+  height: 35px;
+  margin-left: 5%;
+  background: #fff;
+  border: 2px solid #000;
+  color: #000;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  font-family: "Wallpoet", Arial, Helvetica, sans-serif;
+}
+</style>
