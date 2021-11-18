@@ -31,7 +31,7 @@ export default defineComponent({
 <style scoped>
 .layout {
   width: 500px;
-  height: 500px;
+  height: 600px;
   background: #273746;
   position: absolute;
   top: 50%;

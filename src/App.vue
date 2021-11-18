@@ -21,4 +21,5 @@ export default defineComponent({
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
 </style>

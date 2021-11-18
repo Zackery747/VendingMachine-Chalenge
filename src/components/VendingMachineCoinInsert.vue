@@ -38,8 +38,16 @@ import { defineComponent, Ref, ref } from 'vue'
 import CoinTypeInterface from '@/classes/interface/coinTypeInterface'
 
 export default defineComponent({
-  setup () {
-    const totalCoin: Ref<number> = ref(0)
+  props: {
+    modelValue: {
+      type: Number,
+      required: true
+    }
+  },
+  emits: ['update:modelValue'],
+  setup (props, { emit }) {
+    const totalCoin: Ref<number> = ref(props.modelValue)
+
     const coins: Ref<CoinTypeInterface[]> = ref([
       {
         name: '20c',
@@ -75,6 +83,7 @@ export default defineComponent({
 
     function insertCoin (value: number) {
       totalCoin.value += value
+      emit('update:modelValue', totalCoin.value)
     }
 
     return {
@@ -129,6 +138,7 @@ export default defineComponent({
   display: grid;
   align-items: center;
   justify-content: center;
-  font-family: "Wallpoet", Arial, Helvetica, sans-serif;
+  font-family: "Saira Stencil One", Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }
 </style>

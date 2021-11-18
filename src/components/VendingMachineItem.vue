@@ -1,5 +1,8 @@
 <template>
   <div class="item">
+    <div class="item-name">
+      <span><b>{{ product.name }}</b></span>
+    </div>
     <div class="item-image-wrapper">
       <el-image
         class="item-image"
@@ -8,8 +11,6 @@
       />
     </div>
     <div class="item-details">
-      <!-- <div class="item-details-number">{{ product.number }}</div>
-      <div class="item-details-price">R{{ product.price }}</div> -->
       <span><b>{{ product.number }}</b> - R{{ product.price }}</span>
     </div>
   </div>
@@ -37,12 +38,12 @@ export default defineComponent({
   display: inline-block;
   vertical-align: top;
   width: calc(33.3% - 10px);
-  height: 100px;
+  height: 120px;
   margin: 5px;
 }
 
 .item-image-wrapper {
-  height: 75px;
+  height: 70px;
   width: 70%;
   margin: auto;
 }
@@ -53,9 +54,9 @@ export default defineComponent({
 }
 
 .item-details {
-  height: 25px;
+  height: 15px;
   width: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Saira Stencil One", Arial, Helvetica, sans-serif;
   font-size: 15px;
 
   display: grid;
@@ -63,21 +64,15 @@ export default defineComponent({
   justify-content: center;
 }
 
-.item-details-number {
-  display: inline-grid;
-  height: 100%;
-  width: 50%;
+.item-name {
+  height: 15px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
 
+  display: grid;
   align-items: center;
   justify-content: center;
 }
 
-.item-details-price {
-  display: inline-grid;
-  height: 100%;
-  width: 50%;
-
-  align-items: center;
-  justify-content: center;
-}
 </style>

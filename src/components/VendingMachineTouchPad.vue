@@ -46,19 +46,29 @@
 import { computed, defineComponent, Ref, ref } from 'vue'
 
 export default defineComponent({
-  setup () {
-    const numberInput: Ref<string> = ref('')
+  props: {
+    modelValue: {
+      type: String,
+      required: true
+    }
+  },
+  emits: ['update:modelValue'],
+  setup (props, { emit }) {
+    const numberInput: Ref<string> = ref(props.modelValue)
 
     function addInputNumber (number: string): void {
       numberInput.value = `${numberInput.value}${number}`
+      emit('update:modelValue', numberInput.value)
     }
 
     function clearNumbers (): void {
       numberInput.value = ''
+      emit('update:modelValue', numberInput.value)
     }
 
     function deleteNumber ():void {
       numberInput.value = numberInput.value.substring(0, numberInput.value.length - 1)
+      emit('update:modelValue', numberInput.value)
     }
 
     const disableButtons = computed((): boolean => {
@@ -103,7 +113,8 @@ export default defineComponent({
   background: #fff;
   border: none;
   border-radius: 3px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Saira Stencil One", Arial, Helvetica, sans-serif;
+  font-size: 25px;
 }
 
 .touch-pad-button:hover {
@@ -121,6 +132,7 @@ export default defineComponent({
   display: grid;
   align-items: center;
   justify-content: center;
-  font-family: "Wallpoet", Arial, Helvetica, sans-serif;
+  font-family: "Saira Stencil One", Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }
 </style>
