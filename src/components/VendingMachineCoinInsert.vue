@@ -19,7 +19,7 @@
       <div
         v-for="(coin, index) in coins"
         :key="`coin${index}`"
-        class="coin"
+        class="coin no-select "
         :style='`
           background: ${coin.backgroundColor};
           border: 5px solid ${coin.borderColor}

@@ -12,7 +12,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -22,4 +22,12 @@ export default defineComponent({
 
 @import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+
+.no-select {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
 </style>

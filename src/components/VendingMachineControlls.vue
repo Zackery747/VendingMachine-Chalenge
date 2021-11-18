@@ -5,7 +5,7 @@
   <vending-machine-touch-pad v-model="selectedNumber"/>
   <!-- enter button -->
   <button
-    class="enter-button"
+    class="enter-button no-select "
     :disabled="selectDisabled"
     @click="selectProduct()"
   >
@@ -77,7 +77,6 @@ export default defineComponent({
       selectedNumber.value = ''
 
       // give product
-      alert('Product: ' + product.name)
       emit('dispense-product', product)
     }
 

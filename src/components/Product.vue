@@ -41,7 +41,7 @@ export default defineComponent({
 
 @keyframes fadein {
   0% { opacity: 0; top: 0% }
-  50%   { opacity: 1; top: 40%}
+  70%   { opacity: 1; top: 40%}
   100% { opacity: 0; top: 40% }
 }
 </style>

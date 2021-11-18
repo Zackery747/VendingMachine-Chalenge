@@ -9,7 +9,7 @@
       <button
         v-for="(number, index) in 9"
         :key="`button-${index}`"
-        class="touch-pad-button"
+        class="touch-pad-button no-select "
         :disabled="disableButtons"
         @click="addInputNumber((number).toString())"
       >
@@ -17,14 +17,14 @@
       </button>
       <!-- # -->
       <button
-        class="touch-pad-button"
+        class="touch-pad-button no-select "
         @click="clearNumbers()"
       >
         C
       </button>
       <!-- 0 -->
       <button
-        class="touch-pad-button"
+        class="touch-pad-button no-select "
         :disabled="disableButtons"
         @click="addInputNumber('0')"
       >
