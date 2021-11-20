@@ -16,18 +16,13 @@
     </template>
     <!-- coins -->
     <div>
-      <div
-        v-for="(coin, index) in coins"
-        :key="`coin${index}`"
-        class="coin no-select "
-        :style='`
-          background: ${coin.backgroundColor};
-          border: 5px solid ${coin.borderColor}
-        `'
-        @click="insertCoin(coin.value)"
-      >
-        {{ coin.name }}
-      </div>
+      <coin-template :coinValue="0.05" @click="insertCoin(0.05)" />
+      <coin-template :coinValue="0.10" @click="insertCoin(0.10)" />
+      <coin-template :coinValue="0.20" @click="insertCoin(0.20)" />
+      <coin-template :coinValue="0.50" @click="insertCoin(0.50)" />
+      <coin-template :coinValue="1" @click="insertCoin(1)" />
+      <coin-template :coinValue="2" @click="insertCoin(2)" />
+      <coin-template :coinValue="5" @click="insertCoin(5)" />
     </div>
     </el-popover>
   </div>
@@ -36,6 +31,7 @@
 <script lang="ts">
 import { defineComponent, Ref, ref, watch } from 'vue'
 import CoinTypeInterface from '@/classes/interface/coinTypeInterface'
+import CoinTemplate from '@/components/Coin.vue'
 
 export default defineComponent({
   props: {
@@ -45,10 +41,25 @@ export default defineComponent({
     }
   },
   emits: ['update:modelValue'],
+  components: {
+    CoinTemplate
+  },
   setup (props, { emit }) {
     const totalCoin: Ref<number> = ref(props.modelValue)
 
     const coins: Ref<CoinTypeInterface[]> = ref([
+      {
+        name: '5c',
+        value: 0.05,
+        backgroundColor: '#F39C12',
+        borderColor: '#D68910'
+      },
+      {
+        name: '10c',
+        value: 0.10,
+        backgroundColor: '#F39C12',
+        borderColor: '#D68910'
+      },
       {
         name: '20c',
         value: 0.20,
