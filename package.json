@@ -52,7 +52,10 @@
     "parserOptions": {
       "ecmaVersion": 2020
     },
-    "rules": {},
+    "rules": {
+      "indent": "off",
+      "@typescript-eslint/indent": ["error", 2]
+    },
     "overrides": [
       {
         "files": [
