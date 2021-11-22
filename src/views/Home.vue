@@ -31,7 +31,7 @@
       class="creator-name"
       target="_blank"
     >
-      create by <b>Zackery747</b>
+      created by <b>Zackery747</b>
     </a>
   </div>
 </template>
