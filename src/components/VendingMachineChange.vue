@@ -97,7 +97,6 @@ export default defineComponent({
     })
 
     watch(() => props.totalChange, (newValue: number) => {
-      console.log('🚀 ~ file: VendingMachineChange.vue ~ line 99 ~ watch ~ newValue', newValue)
       change.value = {
         cent05: 0,
         cent10: 0,

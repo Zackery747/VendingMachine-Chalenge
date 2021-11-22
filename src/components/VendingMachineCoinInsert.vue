@@ -12,8 +12,9 @@
       trigger="hover"
     >
     <template #reference>
-      <div class="coin-slot"></div>
+      <div class="coin-slot"/>
     </template>
+
     <!-- coins -->
     <div>
       <coin-template :coinValue="0.05" @click="insertCoin(0.05)" />
@@ -47,7 +48,6 @@ export default defineComponent({
   },
   setup (props, { emit }) {
     const totalCoin: Ref<number> = ref(props.modelValue)
-
     const coins: Ref<CoinTypeInterface[]> = ref(CoinsData)
 
     function insertCoin (value: number) {

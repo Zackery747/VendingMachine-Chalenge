@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="item-name">
-      <span><b>{{ product.name }}</b></span>
+      {{ product.name }}
     </div>
     <div class="item-image-wrapper">
       <el-image
@@ -69,6 +69,7 @@ export default defineComponent({
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
+  font-weight: bold;
 
   display: grid;
   align-items: center;

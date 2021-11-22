@@ -1,11 +1,13 @@
 <template>
   <div>
-    <!-- the users number input -->
+    <!-- number display -->
     <div class="touch-pad-number">
       Number: {{ numberInput }}
     </div>
+
     <!-- touch pad -->
     <div class="touch-pad">
+      <!-- numbers 1 - 9 -->
       <button
         v-for="(number, index) in 9"
         :key="`button-${index}`"
@@ -15,7 +17,8 @@
       >
         {{ number }}
       </button>
-      <!-- # -->
+
+      <!-- clear -->
       <button
         class="touch-pad-button no-select "
         :disabled="disableDeleteButtons"
@@ -23,6 +26,7 @@
       >
         C
       </button>
+
       <!-- 0 -->
       <button
         class="touch-pad-button no-select "
@@ -31,6 +35,7 @@
       >
         {{ 0 }}
       </button>
+
       <!-- delete -->
       <button
         class="touch-pad-button"

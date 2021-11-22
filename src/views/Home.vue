@@ -2,18 +2,22 @@
   <div class="vending-machine-wrapper">
     <vending-machine-layout>
       <template #items>
+        <!-- items -->
         <vending-machine-item
           v-for="(product, index) in products"
           :key="`product-${index}`"
           :product="product"
         />
+
         <!-- dispenser -->
         <div class="dispenser">
           <product v-if="productToDispense" :image="productToDispense?.image || ''"/>
           <div class="dispenser-glass"/>
         </div>
       </template>
+
       <template #right>
+        <!-- controls -->
         <vending-machine-controlls
           :products="products"
           @dispense-product="dispenseProduct"

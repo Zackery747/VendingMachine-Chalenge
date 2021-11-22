@@ -9,7 +9,8 @@
     <div class="layout-right-section">
       <slot name="right"/>
     </div>
-    <!-- vending machine botto parts -->
+
+    <!-- vending machine bottom parts -->
     <div class="left-foot"></div>
     <div class="right-foot"></div>
   </div>

@@ -1,8 +1,10 @@
 <template>
   <!-- coin insert -->
   <vending-machine-coin-insert v-model="totalCoins"/>
+
   <!-- touch pad -->
   <vending-machine-touch-pad v-model="selectedNumber"/>
+
   <!-- enter button -->
   <button
     class="enter-button no-select "
@@ -11,6 +13,7 @@
   >
     Select
   </button>
+
   <!-- cancel button -->
   <button
     class="cancel-button no-select "
@@ -20,6 +23,7 @@
   >
     Cancel
   </button>
+
   <!-- change -->
   <el-dialog
     v-model="dialogChangeVisible"
@@ -84,7 +88,7 @@ export default defineComponent({
         return
       }
 
-      // check if client can afford the product
+      // check if client can afford product
       if (product.price > totalCoins.value) {
         ElMessage({
           showClose: true,
