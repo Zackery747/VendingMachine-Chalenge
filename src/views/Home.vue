@@ -12,7 +12,7 @@
         <!-- dispenser -->
         <div class="dispenser">
           <product v-if="productToDispense" :image="productToDispense?.image || ''"/>
-          <div class="dispenser-glass"/>
+          <div class="dispenser-glass">Push</div>
         </div>
       </template>
 
@@ -88,5 +88,13 @@ export default defineComponent({
   background: rgba(37, 37, 37, 0.5);
   top: 0px;
   left: 0px;
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+  font-family: "Righteous", Arial, Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
 }
 </style>

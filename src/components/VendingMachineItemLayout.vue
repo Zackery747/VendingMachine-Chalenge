@@ -18,9 +18,11 @@ export default defineComponent({
 .item-layout {
   width: 95%;
   height: auto;
-  background: #FDFEFE;
-  border: 10px solid #D7DBDD;
+  background: #fff;
+  border: 8px solid #d3d3d3;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 3px;
+  position: relative;
 }
+
 </style>

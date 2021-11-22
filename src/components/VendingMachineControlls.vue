@@ -147,7 +147,7 @@ export default defineComponent({
   background: #fff;
   border: 2px solid #212F3D;
   border-radius: 7px;
-  font-family: "Saira Stencil One", Arial, Helvetica, sans-serif;
+  font-family: "Righteous", Arial, Helvetica, sans-serif;
   font-size: 25px;
 
   display: grid;
@@ -167,7 +167,7 @@ export default defineComponent({
   background: #fff;
   border: 2px solid #212F3D;
   border-radius: 7px;
-  font-family: "Saira Stencil One", Arial, Helvetica, sans-serif;
+  font-family: "Righteous", Arial, Helvetica, sans-serif;
   font-size: 25px;
   color: #E74C3C;
 
