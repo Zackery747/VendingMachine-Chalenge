@@ -62,8 +62,6 @@ export default defineComponent({
     CoinTemplate
   },
   setup (props) {
-    console.log('hellow world', props.totalChange)
-
     const coinsLeft: Ref<number> = ref(0)
     const change: Ref<CoinChangeInterface> = ref({
       cent05: 0,
@@ -98,7 +96,10 @@ export default defineComponent({
     })
 
     return {
-      change
+      change,
+      // for testing purposes only
+      perCoinChange,
+      calculateChange
     }
   }
 })
