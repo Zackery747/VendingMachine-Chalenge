@@ -6,7 +6,7 @@
   <!-- enter button -->
   <button
     class="enter-button no-select "
-    :disabled="selectDisabled"
+    :disabled="disableSelectButton"
     @click="selectProduct()"
   >
     Select
@@ -17,7 +17,9 @@
     title="Your Change "
     width="400px"
   >
-    <vending-machine-change :total-change="totalChange"/>
+    <vending-machine-change
+      :total-change="totalChange"
+    />
   </el-dialog>
 </template>
 
@@ -48,12 +50,14 @@ export default defineComponent({
     const selectedNumber: Ref<string> = ref('')
     const dialogChangeVisible: Ref<boolean> = ref(false)
 
-    const selectDisabled = computed(() => {
+    const disableSelectButton = computed(() => {
       if (!totalCoins.value || totalCoins.value === 0 || !selectedNumber.value || selectedNumber.value === '') return true
       return false
     })
 
     function selectProduct () {
+      totalChange.value = 0
+
       // check if product exists
       const product: ProductTypeInterface | null = checkIfProductExits()
       if (!product) {
@@ -102,7 +106,7 @@ export default defineComponent({
       totalCoins,
       totalChange,
       selectedNumber,
-      selectDisabled,
+      disableSelectButton,
       selectProduct,
       dialogChangeVisible
     }

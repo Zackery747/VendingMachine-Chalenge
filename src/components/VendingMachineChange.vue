@@ -1,5 +1,5 @@
 <template>
-  <div style="font-size: 18px; margin-bottom: 10px; text-align: center;"><b>Thank you! Please come again.</b></div>
+  <div style="font-size: 25px; margin-bottom: 10px; text-align: center;"><b>Thank you!</b></div>
   <div style="text-align: center;">
     <!-- 5 -->
     <coin-template
@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, Ref, ref } from 'vue'
+import { defineComponent, onMounted, Ref, ref, watch } from 'vue'
 import CoinTemplate from '@/components/Coin.vue'
 import CoinChangeInterface from '@/classes/interface/coinChangeInterface'
 
@@ -84,14 +84,30 @@ export default defineComponent({
     }
 
     function perCoinChange (coinValue: number): number {
-      const remainderValue = coinsLeft.value % coinValue
-      const totalChange = (coinsLeft.value - remainderValue) / coinValue
-      coinsLeft.value = Math.round((remainderValue + Number.EPSILON) * 100) / 100
+      const modScaleFactor = 10000
+      const remainderValue = ((coinsLeft.value * modScaleFactor) % (coinValue * modScaleFactor)) / modScaleFactor
+      const totalChange = Math.ceil((coinsLeft.value - remainderValue) / coinValue)
+      coinsLeft.value = remainderValue
       return totalChange
     }
 
     onMounted(() => {
       coinsLeft.value = props.totalChange
+      calculateChange()
+    })
+
+    watch(() => props.totalChange, (newValue: number) => {
+      console.log('🚀 ~ file: VendingMachineChange.vue ~ line 99 ~ watch ~ newValue', newValue)
+      change.value = {
+        cent05: 0,
+        cent10: 0,
+        cent20: 0,
+        cent50: 0,
+        rand1: 0,
+        rand2: 0,
+        rand5: 0
+      }
+      coinsLeft.value = newValue
       calculateChange()
     })
 

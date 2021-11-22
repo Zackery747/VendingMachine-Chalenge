@@ -1,18 +1,17 @@
 <template>
   <div
+    v-if="getCoin"
     class="coin no-select "
-    :style='`
-      background: ${getCoin.backgroundColor};
-      border: 5px solid ${getCoin.borderColor}
-    `'
+    :style='cssStyle'
   >
     {{ getCoin.name }}
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, Ref, ref } from 'vue'
+import { computed, defineComponent, Ref, ref } from 'vue'
 import CoinTypeInterface from '@/classes/interface/coinTypeInterface'
+import CoinsData from '@/data/coins'
 
 export default defineComponent({
   props: {
@@ -22,55 +21,22 @@ export default defineComponent({
     }
   },
   setup (props) {
-    const coins: Ref<CoinTypeInterface[]> = ref([
-      {
-        name: '5c',
-        value: 0.05,
-        backgroundColor: '#F39C12',
-        borderColor: '#D68910'
-      },
-      {
-        name: '10c',
-        value: 0.10,
-        backgroundColor: '#F39C12',
-        borderColor: '#D68910'
-      },
-      {
-        name: '20c',
-        value: 0.20,
-        backgroundColor: '#F39C12',
-        borderColor: '#D68910'
-      },
-      {
-        name: '50c',
-        value: 0.50,
-        backgroundColor: '#F39C12',
-        borderColor: '#D68910'
-      },
-      {
-        name: 'R1',
-        value: 1,
-        backgroundColor: '#CACFD2',
-        borderColor: '#A6ACAF'
-      },
-      {
-        name: 'R2',
-        value: 2,
-        backgroundColor: '#CACFD2',
-        borderColor: '#A6ACAF'
-      },
-      {
-        name: 'R5',
-        value: 5,
-        backgroundColor: '#F39C12',
-        borderColor: '#A6ACAF'
-      }
-    ])
+    const coins: Ref<CoinTypeInterface[]> = ref(CoinsData)
 
-    const getCoin = computed(() => coins.value.filter((coin: CoinTypeInterface) => coin.value === props.coinValue)[0])
+    const getCoin = computed(() => coins.value.filter(
+      (coin: CoinTypeInterface) => coin.value === props.coinValue)[0]
+    )
+
+    const cssStyle = computed(() =>
+      `
+        background: ${getCoin.value.backgroundColor};
+        border: 5px solid ${getCoin.value.borderColor}
+      `
+    )
 
     return {
-      getCoin
+      getCoin,
+      cssStyle
     }
   }
 })

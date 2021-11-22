@@ -9,7 +9,7 @@
     <el-popover
       placement="bottom"
       :width="200"
-      trigger="click"
+      trigger="hover"
     >
     <template #reference>
       <div class="coin-slot"></div>
