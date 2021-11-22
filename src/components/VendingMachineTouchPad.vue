@@ -18,6 +18,7 @@
       <!-- # -->
       <button
         class="touch-pad-button no-select "
+        :disabled="disableDeleteButtons"
         @click="clearNumbers()"
       >
         C

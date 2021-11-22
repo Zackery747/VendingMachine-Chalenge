@@ -115,7 +115,8 @@ export default defineComponent({
       change,
       // for testing purposes only
       perCoinChange,
-      calculateChange
+      calculateChange,
+      coinsLeft
     }
   }
 })

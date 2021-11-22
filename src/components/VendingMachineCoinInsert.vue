@@ -32,6 +32,7 @@
 import { defineComponent, Ref, ref, watch } from 'vue'
 import CoinTypeInterface from '@/classes/interface/coinTypeInterface'
 import CoinTemplate from '@/components/Coin.vue'
+import CoinsData from '@/data/coins'
 
 export default defineComponent({
   props: {
@@ -47,50 +48,7 @@ export default defineComponent({
   setup (props, { emit }) {
     const totalCoin: Ref<number> = ref(props.modelValue)
 
-    const coins: Ref<CoinTypeInterface[]> = ref([
-      {
-        name: '5c',
-        value: 0.05,
-        backgroundColor: '#F39C12',
-        borderColor: '#D68910'
-      },
-      {
-        name: '10c',
-        value: 0.10,
-        backgroundColor: '#F39C12',
-        borderColor: '#D68910'
-      },
-      {
-        name: '20c',
-        value: 0.20,
-        backgroundColor: '#F39C12',
-        borderColor: '#D68910'
-      },
-      {
-        name: '50c',
-        value: 0.50,
-        backgroundColor: '#F39C12',
-        borderColor: '#D68910'
-      },
-      {
-        name: 'R1',
-        value: 1,
-        backgroundColor: '#CACFD2',
-        borderColor: '#A6ACAF'
-      },
-      {
-        name: 'R2',
-        value: 2,
-        backgroundColor: '#CACFD2',
-        borderColor: '#A6ACAF'
-      },
-      {
-        name: 'R5',
-        value: 5,
-        backgroundColor: '#F39C12',
-        borderColor: '#A6ACAF'
-      }
-    ])
+    const coins: Ref<CoinTypeInterface[]> = ref(CoinsData)
 
     function insertCoin (value: number) {
       totalCoin.value += value

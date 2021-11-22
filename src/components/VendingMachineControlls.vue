@@ -11,6 +11,15 @@
   >
     Select
   </button>
+  <!-- cancel button -->
+  <button
+    class="cancel-button no-select "
+    :disabled="disableCancelButton"
+    :style="`color: ${disableCancelButton ? '#ccc' : '#E74C3C'}`"
+    @click="cancel()"
+  >
+    Cancel
+  </button>
   <!-- change -->
   <el-dialog
     v-model="dialogChangeVisible"
@@ -55,6 +64,11 @@ export default defineComponent({
       return false
     })
 
+    const disableCancelButton = computed(() => {
+      if (totalCoins.value > 0) return false
+      return true
+    })
+
     function selectProduct () {
       totalChange.value = 0
 
@@ -81,16 +95,14 @@ export default defineComponent({
         return
       }
 
-      // deduct coins
       totalChange.value = totalCoins.value - product.price
-
-      // set coins to R0
       totalCoins.value = 0
-      // set select number to ''
       selectedNumber.value = ''
 
-      // give product
+      // display product
       emit('dispense-product', product)
+
+      // display change
       setTimeout(() => {
         dialogChangeVisible.value = true
       }, 2100)
@@ -102,13 +114,22 @@ export default defineComponent({
       return product
     }
 
+    function cancel () {
+      totalChange.value = totalCoins.value
+      dialogChangeVisible.value = true
+      totalCoins.value = 0
+      selectedNumber.value = ''
+    }
+
     return {
       totalCoins,
       totalChange,
       selectedNumber,
       disableSelectButton,
       selectProduct,
-      dialogChangeVisible
+      dialogChangeVisible,
+      cancel,
+      disableCancelButton
     }
   }
 })
@@ -131,6 +152,27 @@ export default defineComponent({
 }
 
 .enter-button:hover {
+  font-size: 26px;
+}
+
+.cancel-button {
+  width: 90%;
+  height: 45px;
+  margin: auto;
+  margin-top: 10px;
+  background: #fff;
+  border: 2px solid #212F3D;
+  border-radius: 7px;
+  font-family: "Saira Stencil One", Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  color: #E74C3C;
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancel-button:hover {
   font-size: 26px;
 }
 </style>

@@ -30,7 +30,10 @@ export default defineComponent({
     const cssStyle = computed(() =>
       `
         background: ${getCoin.value.backgroundColor};
-        border: 5px solid ${getCoin.value.borderColor}
+        border-bottom: 5px solid ${getCoin.value.borderColor1};
+        border-right: 5px solid ${getCoin.value.borderColor1};
+        border-left: 5px solid ${getCoin.value.borderColor2};
+        border-top: 5px solid ${getCoin.value.borderColor2};
       `
     )
 
@@ -47,7 +50,7 @@ export default defineComponent({
   width: 60px;
   height: 60px;
   box-sizing: border-box;
-  border-radius: 60px;
+  border-radius: 50%;
   display: inline-grid;
   align-items: center;
   justify-content: center;
@@ -56,5 +59,6 @@ export default defineComponent({
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 10px;
   cursor: pointer;
+  color: #000;
 }
 </style>
