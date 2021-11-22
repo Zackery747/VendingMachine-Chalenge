@@ -85,5 +85,4 @@ export default defineComponent({
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
 }
-
 </style>
